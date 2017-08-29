@@ -13,7 +13,7 @@ var orm = {
   },
 
   findParties: function(selectType, table, pName){
-    var queryStr = "SELECT ?? FROM ?? WHERE party_name ??";
+    var queryStr = "SELECT ?? FROM ?? WHERE party_name ?";
     mysql.query(queryStr, [selectType, table, pName], function(err, data){
       if (err) {
         console.log("Error: " + err);
@@ -22,8 +22,14 @@ var orm = {
     });
   },
 
-  findClients: function(selectType, table, clientName){
-    var queryStr = "SELECT ?? FROM ?? "
+  findClients: function(table, colToSearch, val){
+    var queryStr = "SELECT * FROM ?? WHERE ?? = ?";
+    mysql.query(queryStr, [table, colToSearch, val], function(err, data){
+      if (err) {
+        console.log("Error: " + err);
+      }
+      console.log(data);
+    })
   }
 
 };
