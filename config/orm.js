@@ -1,4 +1,5 @@
 var mysql = require("./connection.js");
+var inquirer = require("inquirer");
 
 var orm = {
   selectAll: function(selectType, table){
@@ -11,14 +12,18 @@ var orm = {
     });
   },
 
-  findParties: function(partyName){
-    var queryStr = "SELECT * FROM parties WHERE party_name ??";
-    mysql.query(queryStr, [party_name], function(err, data){
+  findParties: function(selectType, table, pName){
+    var queryStr = "SELECT ?? FROM ?? WHERE party_name ??";
+    mysql.query(queryStr, [selectType, table, pName], function(err, data){
       if (err) {
         console.log("Error: " + err);
       }
       console.log(data);
-    };
+    });
+  },
+
+  findClients: function(selectType, table, clientName){
+    var queryStr = "SELECT ?? FROM ?? "
   }
 
 };
